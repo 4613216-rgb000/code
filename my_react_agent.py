@@ -1,5 +1,3 @@
-
-
 MY_REACT_PROMPT = """你是一个具备推理和行动能力的AI助手。你可以通过思考分析问题，然后调用合适的工具来获取信息，最终给出准确的答案。
 
 ## 可用工具
@@ -28,6 +26,7 @@ Action: 选择一个行动，格式必须是以下之一:
 现在开始你的推理和行动:
 """
 
+
 class MyReActAgent(ReActAgent):
     """
     重写的ReAct Agent - 推理与行动结合的智能体
@@ -41,7 +40,7 @@ class MyReActAgent(ReActAgent):
         system_prompt: Optional[str] = None,
         config: Optional[Config] = None,
         max_steps: int = 5,
-        custom_prompt: Optional[str] = None
+        custom_prompt: Optional[str] = None,
     ):
         super().__init__(name, llm, system_prompt, config)
         self.tool_registry = tool_registry
@@ -65,9 +64,7 @@ class MyReActAgent(ReActAgent):
             tools_desc = self.tool_registry.get_tools_description()
             history_str = "\n".join(self.current_history)
             prompt = self.prompt_template.format(
-                tools=tools_desc,
-                question=input_text,
-                history=history_str
+                tools=tools_desc, question=input_text, history=history_str
             )
 
             # 2. 调用LLM
