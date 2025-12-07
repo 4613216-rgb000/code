@@ -1,6 +1,4 @@
-import re
-from typing import Optional, List, Tuple
-from hello_agents import ReActAgent, HelloAgentsLLM, Config, Message, ToolRegistry
+
 
 MY_REACT_PROMPT = """你是一个具备推理和行动能力的AI助手。你可以通过思考分析问题，然后调用合适的工具来获取信息，最终给出准确的答案。
 
@@ -97,4 +95,5 @@ class MyReActAgent(ReActAgent):
         final_answer = "抱歉，我无法在限定步数内完成这个任务。"
         self.add_message(Message(input_text, "user"))
         self.add_message(Message(final_answer, "assistant"))
+
         return final_answer
